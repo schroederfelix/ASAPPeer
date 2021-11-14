@@ -38,5 +38,6 @@ public class Peer
 		// get fresh status information from hub, especially peer ids
 		hubConnector.syncHubInformation();
 
+		//hubConnector.connectPeer(BOB);
 	}
 }
