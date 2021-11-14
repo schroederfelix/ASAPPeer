@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 public class PeerTorDefault {
 
@@ -30,12 +31,18 @@ public class PeerTorDefault {
 		String OnionAdress = "lcfzvc24obzeq6sv.onion";
 
 
-		Socket clientSocket = Utilities.socks4aSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
-
+			Socket clientSocket = Utilities.socks4aSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
+//		Socket clientSocket = Utilities.socks5rawSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
 		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-		out.flush();
 
-		out.writeObject("i am workingg");
-		out.flush();
+		for (int i = 0; i < 10;i++)
+		{
+			System.out.println("Socket :"+i+" " +clientSocket);
+			out.flush();
+			out.writeObject("i am workingg"+i);
+			out.flush();
+//			out.close();
+			TimeUnit.SECONDS.sleep(1);
+		}
 	}
 }
