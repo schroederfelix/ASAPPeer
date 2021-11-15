@@ -2,6 +2,7 @@ package net.sharksystem.hub.peerside;
 import net.sharksystem.asap.ASAPException;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 public class Peer
 {
@@ -24,7 +25,8 @@ public class Peer
 		return Peer.port;
 	}
 
-	public static void main(String[] args) throws IOException, ASAPException {
+	public static void main(String[] args) throws IOException, ASAPException, InterruptedException
+	{
 
 		HubConnector hubConnector = SharedTCPChannelConnectorPeerSide.createTCPHubConnector("localhost", 6910);
 		//ASAPEncounterManagerImpl em = new ASAPEncounterManagerImpl();
@@ -38,6 +40,8 @@ public class Peer
 		// get fresh status information from hub, especially peer ids
 		hubConnector.syncHubInformation();
 
-		hubConnector.connectPeer(BOB);
+		TimeUnit.SECONDS.sleep(3);
+
+//		hubConnector.connectPeer(BOB);
 	}
 }

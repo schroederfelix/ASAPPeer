@@ -32,6 +32,8 @@ public class SharedTCPChannelConnectorPeerSide extends SharedChannelConnectorPee
         // create TCP connection to hub
         Socket hubSocket = new Socket(hostName.toString(), port);
 
+        System.out.println("HubSocket Address: "+hubSocket.getLocalAddress());
+
         return new SharedTCPChannelConnectorPeerSide(hubSocket, hostName, port, multiChannel);
     }
 

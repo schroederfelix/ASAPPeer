@@ -17,6 +17,7 @@ public class PeerTor
 {
 
 	static final CharSequence ALICE = "Alice";
+	static final CharSequence BOB = "Bob";
 
 	public static void main(String[] args) throws IOException, InterruptedException, ASAPException
 	{
@@ -39,6 +40,7 @@ public class PeerTor
 		String localHost = "127.0.0.1";
 
 		Socket clientSocket = Utilities.socks4aSocketConnection(onionAdress, hiddenServicePort ,localHost, localPort);
+//		clientSocket.setKeepAlive(true);
 //		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 //		out.flush();
 
@@ -52,5 +54,7 @@ public class PeerTor
 		hubConnector.connectHub(ALICE);
 
 		hubConnector.getPeerIDs();
+
+		hubConnector.connectPeer(BOB);
 	}
 }
