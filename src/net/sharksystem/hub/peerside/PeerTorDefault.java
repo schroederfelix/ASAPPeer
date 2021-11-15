@@ -31,18 +31,26 @@ public class PeerTorDefault {
 		String OnionAdress = "lcfzvc24obzeq6sv.onion";
 
 
-			Socket clientSocket = Utilities.socks4aSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
+		Socket clientSocket = Utilities.socks4aSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
+
+		clientSocket.setKeepAlive(true);
 //		Socket clientSocket = Utilities.socks5rawSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
 		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+		out.flush();
+
 
 		for (int i = 0; i < 10;i++)
 		{
 			System.out.println("Socket :"+i+" " +clientSocket);
-			out.flush();
+//			out.flush();
 			out.writeObject("i am workingg"+i);
 			out.flush();
+
+			System.out.println("Keepalive : "+clientSocket.getKeepAlive());
 //			out.close();
-			TimeUnit.SECONDS.sleep(1);
+			System.out.println("wait start");
+			TimeUnit.SECONDS.sleep(5);
+			System.out.println("wait stop");
 		}
 	}
 }

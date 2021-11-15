@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 
 public class PeerTor
@@ -38,18 +39,18 @@ public class PeerTor
 		String localHost = "127.0.0.1";
 
 		Socket clientSocket = Utilities.socks4aSocketConnection(onionAdress, hiddenServicePort ,localHost, localPort);
-		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-		out.flush();
-		out.writeObject("i am workingg1");
-		out.flush();
+//		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+//		out.flush();
+
+//		out.writeObject("i am workingg1");
+//		out.flush();
+
 		HubConnector hubConnector = SharedTORChannelConnectorPeerSide.createTORHubConnector(clientSocket,"localhost", localPort);
 
-		out.writeObject("i am workingg2");
-		out.flush();
+		TimeUnit.SECONDS.sleep(2);
 		System.out.println("Try to Connect Alice to hub");
 		hubConnector.connectHub(ALICE);
 
 		hubConnector.getPeerIDs();
-		//out.flush();
 	}
 }
