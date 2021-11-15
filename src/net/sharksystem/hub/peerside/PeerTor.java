@@ -40,6 +40,8 @@ public class PeerTor
 		String localHost = "127.0.0.1";
 
 		Socket clientSocket = Utilities.socks4aSocketConnection(onionAdress, hiddenServicePort ,localHost, localPort);
+
+		System.out.println("My address: "+ clientSocket.getLocalAddress());
 //		clientSocket.setKeepAlive(true);
 //		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 //		out.flush();
@@ -55,6 +57,6 @@ public class PeerTor
 
 		hubConnector.getPeerIDs();
 
-		hubConnector.connectPeer(BOB);
+//		hubConnector.connectPeer(BOB);
 	}
 }
