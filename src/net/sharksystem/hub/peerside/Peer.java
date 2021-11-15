@@ -36,11 +36,12 @@ public class Peer
 		// tell hub who you are - other peers will find you
 		hubConnector.connectHub(ALICE);
 		// get list of peer connected to this hub
+
 		hubConnector.getPeerIDs();
 		// get fresh status information from hub, especially peer ids
 		hubConnector.syncHubInformation();
 
-		TimeUnit.SECONDS.sleep(3);
+		//TimeUnit.SECONDS.sleep(3);
 
 //		hubConnector.connectPeer(BOB);
 	}

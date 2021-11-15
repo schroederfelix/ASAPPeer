@@ -42,7 +42,7 @@ public class PeerTor
 		Socket clientSocket = Utilities.socks4aSocketConnection(onionAdress, hiddenServicePort ,localHost, localPort);
 
 		System.out.println("My address: "+ clientSocket.getLocalAddress());
-//		clientSocket.setKeepAlive(true);
+		clientSocket.setKeepAlive(true);
 //		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 //		out.flush();
 
@@ -51,11 +51,19 @@ public class PeerTor
 
 		HubConnector hubConnector = SharedTORChannelConnectorPeerSide.createTORHubConnector(clientSocket,"localhost", localPort);
 
-		TimeUnit.SECONDS.sleep(2);
 		System.out.println("Try to Connect Alice to hub");
 		hubConnector.connectHub(ALICE);
 
-		hubConnector.getPeerIDs();
+
+
+		for (int i = 0; i < 10; i++)
+		{
+			System.out.println("GetPeers + Sync: "+(i+1));
+			hubConnector.getPeerIDs();
+			hubConnector.syncHubInformation();
+			TimeUnit.SECONDS.sleep(5);
+		}
+
 
 //		hubConnector.connectPeer(BOB);
 	}
