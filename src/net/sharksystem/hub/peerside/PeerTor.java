@@ -45,16 +45,13 @@ public class PeerTor
 		String onionAdress = "zv5qog55mek74ly2.onion";
 		String localHost = "127.0.0.1";
 
+		Socket clientSocket = Utilities.socks4aSocketConnection(onionAdress, hiddenServicePort ,localHost, localPort);
+
+		HubConnector hubConnector = SharedTORChannelConnectorPeerSide.createTORHubConnector(clientSocket,"localhost", localPort);
 		asapPeer = getASAPPeer();
 
 		ASAPEncounterManagerImpl em = new ASAPEncounterManagerImpl(asapPeer);
 		NewConnectionListenerImpl listener = new NewConnectionListenerImpl(em);
-
-		Socket clientSocket = Utilities.socks4aSocketConnection(onionAdress, hiddenServicePort ,localHost, localPort);
-
-
-		HubConnector hubConnector = SharedTORChannelConnectorPeerSide.createTORHubConnector(clientSocket,"localhost", localPort);
-
 		hubConnector.addListener(listener);
 
 		hubConnector.connectHub(ALICE);
