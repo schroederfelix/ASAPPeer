@@ -79,6 +79,7 @@ public class SharedTCPChannelConnectorPeerSide extends SharedChannelConnectorPee
 
     @Override
     public void openNewTCPConnectionRequest(HubPDUConnectPeerNewTCPSocketRQ pdu) {
+
         if(!this.multiChannel) {
             Log.writeLog(this, this.toString(),"no multiChannel support " + pdu.peerID);
             this.pduNotHandled(pdu);

@@ -81,6 +81,7 @@ public class ConnectorThread extends Thread {
                 }
             }
         } catch (IOException | ASAPException e) {
+            System.out.println(e);
             Log.writeLog(this, this.connector.toString(),"connection lost - no recovery expected");
             noRecovery = true; // connection lost
         } catch (ClassCastException e) {

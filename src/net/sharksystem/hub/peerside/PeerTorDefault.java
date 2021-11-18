@@ -32,9 +32,8 @@ public class PeerTorDefault {
 
 
 		Socket clientSocket = Utilities.socks4aSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
-
 		clientSocket.setKeepAlive(true);
-//		Socket clientSocket = Utilities.socks5rawSocketConnection(OnionAdress, hiddenServicePort, "127.0.0.1", localPort);
+
 		ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 		out.flush();
 
