@@ -61,8 +61,6 @@ public class PeerTor
 		TimeUnit.SECONDS.sleep(10);
 
 
-//		hubConnector.connectPeer(BOB);
-
 
 		for (int i = 0; i < 100; i++)
 		{
@@ -70,7 +68,7 @@ public class PeerTor
 
 			hubConnector.syncHubInformation();
 			hubConnector.getPeerIDs();
-			TimeUnit.SECONDS.sleep(5);
+			TimeUnit.SECONDS.sleep(20);
 		}
 	}
 
@@ -83,17 +81,6 @@ public class PeerTor
 				supportFormatsList.add("TorApp");
 				peer = new ASAPPeerFS("owner", asapFileStorageLocation,
 											   supportFormatsList);
-
-				// overwrite chunk received listener
-
-				//asapPeer.overwriteChuckReceivedListener(new ExampleASAPChunkReceivedListener(asapFileStorageLocation));
-
-
-
-				// listener fo radar app
-				//asapPeer.addASAPEnvironmentChangesListener();
-				//this.asapPeer.addOnlinePeersChangedListener(this);
-
 
 			} catch (IOException | ASAPException e) {
 				e.printStackTrace();
