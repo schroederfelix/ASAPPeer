@@ -34,6 +34,7 @@ public class PeerTor
 
 		int totalSecondsPerTorStartup = 4 * 60;
 		int totalTriesPerTorStartup = 5;
+
 		// Start the Tor Onion Proxy
 		if (!onionProxyManager.startWithRepeat(totalSecondsPerTorStartup, totalTriesPerTorStartup)) {
 			return;
